@@ -89,7 +89,6 @@ export default function AboutSection() {
               ))}
             </div>
           </motion.div>
-
           {/* Ligne verticale */}
           <div className="hidden lg:block w-px self-stretch bg-electric/8" />
 
