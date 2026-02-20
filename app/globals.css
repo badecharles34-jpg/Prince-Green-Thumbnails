@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --electric: #00FF85;
+  --electric-dim: #00CC6A;
+  --dark-900: #020202;
+  --dark-800: #0A0A0A;
+  --dark-700: #111111;
+  --dark-600: #1A1A1A;
+  --dark-500: #222222;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--dark-900);
+  color: white;
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #00FF85;
+  border-radius: 2px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 255, 133, 0.3);
+  color: white;
+}
+
+/* Utilities */
+.text-electric {
+  color: #00FF85;
+}
+
+.bg-electric {
+  background-color: #00FF85;
+}
+
+.border-electric {
+  border-color: #00FF85;
+}
+
+.glow-electric {
+  box-shadow: 0 0 30px rgba(0, 255, 133, 0.4);
+}
+
+.glow-electric-sm {
+  box-shadow: 0 0 15px rgba(0, 255, 133, 0.25);
+}
+
+.text-glow {
+  text-shadow: 0 0 30px rgba(0, 255, 133, 0.5);
+}
+
+.grid-bg {
+  background-image: 
+    linear-gradient(rgba(0, 255, 133, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 133, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.noise-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-electric text-black font-bold px-8 py-4 rounded-none hover:bg-electric-dim transition-all duration-300 uppercase tracking-widest text-sm;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.btn-secondary {
+  @apply border border-electric text-electric font-bold px-8 py-4 rounded-none hover:bg-electric hover:text-black transition-all duration-300 uppercase tracking-widest text-sm;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.card-dark {
+  background: #0a0a0a;
+  border: 1px solid rgba(0, 255, 133, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-dark:hover {
+  border-color: rgba(0, 255, 133, 0.4);
+  box-shadow: 0 0 20px rgba(0, 255, 133, 0.1);
+}
+
+/* Animated underline */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #00FF85;
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Section spacing */
+.section-padding {
+  @apply py-24 px-4 md:px-8 lg:px-16;
+}
+
+/* Loader */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: #020202;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Clip paths for design elements */
+.clip-corner {
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(0,255,133,0.1) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Before/After slider */
+.before-after-container {
+  position: relative;
+  overflow: hidden;
+  cursor: ew-resize;
+}
+
+.before-after-slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #00FF85;
+  cursor: ew-resize;
+  z-index: 10;
+}
+
+.before-after-slider::before,
+.before-after-slider::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: #00FF85;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
